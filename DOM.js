@@ -15,3 +15,21 @@ document.body.appendChild(div)  // Attach in the div
 
 
 
+/// Function Add in the div
+
+// Edit and Remove the Element in DOM
+
+function addlanguage(langName){
+    const li = document.createElement("li")
+    li.innerHTML = `${langName}`
+    document.querySelector('.langugage')
+    appendChild(li)
+}
+addlanguage('python')
+
+function OptAddLanguage (langname ){
+    const li = document.createElement("li")
+    li.appendChild(document.createTextNode(langname))
+     document.querySelector('.Language').appendChild('li')
+}
+OptAddLanguage("python")
