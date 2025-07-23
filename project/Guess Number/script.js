@@ -18,8 +18,10 @@ let playGame = true;
 
 if(playGame){
   Submit.addEventListener('click', (event) => {
-    event.previousDefault();
+    event.preventDefault();
     const guess = parseInt(userInput.value);
+    console.log(guess);
+    
     validation(guess)
   })
 }
@@ -28,11 +30,20 @@ const validation = ((Guess) => {
   //Validate Guess
   if (Guess < 0 || Guess > 100 || isNaN(Guess)){
     alert('please a Valid Number')
+  }else if(Guess < 1){
+    alert('Enter the Number Greater than 1')
+  }else if(Guess > 100){
+    alert('Enter the Number less than 100')
+  }else{
+    PreviousGuess.push(Guess);
+    if(RemainGuess === 11){
+        DisplayGuess(Guess3)
+    }
   }
 })
 
 const CheckGuess = ((Guess) => {
-  //Value rnadom == userInput
+  //Value random == userInput
 })
 
 const DisplayGuess = ((Guess) => {
