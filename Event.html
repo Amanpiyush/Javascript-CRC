@@ -1,0 +1,58 @@
+<!-- //Event in Javascripts
+
+//Events is the signal that something has Happened.
+
+
+//To React an event we assign an Handler  -->
+
+
+<!-- <input type="text" value="click me" onclick="alert('You have Clicked')" type="button"> -->
+
+<script>
+  function countRabbits() {
+    for(let i=1; i<=3; i++) {
+      alert("Rabbit number " + i);
+    }
+  }
+</script>
+
+<input type="button" onclick="countRabbits()" value="Count rabbits!">
+
+
+<script>
+
+    const Rabbit = ((Count) => {
+        for(let i=1;i<=3;i++){
+            alert(`The Rabbit Count is ${i}`);
+        }
+    })
+
+</script>
+
+<input type="button" value="Rabbit Count!!!" onclick="Rabbit()">
+
+
+<input type="button" id="Ele" value="Press Here">
+<script>
+    Ele.onclick = (() =>{
+        alert('Thanks Buddy!')
+    });
+</script>
+
+
+<input id="Elem" type="button" value="Click Me" onclick="alert('Before')">
+<script>
+    Elem.onclick.null = (() =>{
+        alert('After');
+    })
+</script>
+
+
+<!-- <input type="button" id="elem" onclick="alert('Before')" value="Click me">
+<script>
+  elem.onclick = function() { // overwrites the existing handler
+    alert('After'); // only this will be shown
+  };
+</script> -->
+
+
