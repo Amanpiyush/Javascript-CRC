@@ -35,12 +35,19 @@
 //Default is Event Bubbling : It track the elements from Inside to Outside.
 //Event Capturing : It track the elements from Outside to Inside.
 
+// container.addEventListener('click', function(event) {
+//   console.log(event.target);        // The element actually clicked
+//   console.log(event.currentTarget); // The container
+//   console.log(this);                // Also the container (in regular function)
+// });
 
 const Images = document.querySelector('#Image').addEventListener('click', (event) => {
 console.log(event.target.parentNode);
-    console.log(event.tagName);
+    console.log(event.target.tagName);
     if(event.target.tagName === 'IMG'){
         console.log(event.target.id);
+        console.log(this);
+        
         let removeit = event.target.parentNode
         removeit.remove(); //Remove the Element
     }
