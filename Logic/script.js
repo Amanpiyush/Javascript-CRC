@@ -87,3 +87,49 @@ let Fruits = document.getElementById('Fruits');
 // alert(document.body.Fruits.tagName); // Accessing the custom property
 
 
+// alert(document.body.getAttribute('something')) // Accessing the custom attribute
+
+alert(Animal.getAttribute('about'));        // Accessing the custom attribute
+
+//
+// setTimeout (()=>{
+//   location.relaod();
+// }, 5000)
+
+// setTimeout(()=>{
+//     location.reload()
+// },1000)
+
+// alert(Animal.getAttribute('about'));
+
+// Animal.setAttribute('about', "Panda")
+
+// alert(Animal.outerHTML);
+
+//property Attribute sync
+
+let input = document.querySelector('input');
+ 
+
+//Attribute => property
+// input.setAttribute('value', 'text');
+// alert(input.value)
+
+// //property ==> Attribute
+// input.value = "newId";
+// alert(input.getAttribute('value'));
+
+// Buying using Attribute we retrive the original value
+
+//Modifying the documents 
+
+//For messgae mostly we are using  the "Div" createElement
+let div = document.createElement('div');
+div.className = 'alert';
+div.innerHTML = "<strong>Hi! there</strong> You get an important message to read";
+setTimeout(()=>{
+    document.body.append(div);
+}, 3000)
+
+// alert(div.className)
+
