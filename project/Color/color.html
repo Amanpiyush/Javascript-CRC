@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee and Code</title>
+</head>
+<body>
+    <h1>CHANGE THE BACKGROUND COLOR</h1>
+    <button id="Start">Start</button>
+    <button id="Stop">Stop</button>
+</body>
+<script>
+    let randomColor = (()=>{
+        let hex = "0123456789ABCDEF";
+        let color = '#'
+        for(i = 0; i < 6; i++){
+        color += hex[Math.floor(Math.random()*16)]
+        }
+        return color
+    })
+
+    let Startstopcolor;
+    const StartChangingColor = (()=>{
+        if(!Startstopcolor){
+            
+        }
+        let Changecolor = (()=>{
+            document.body.style.backgroundColor = randomColor();
+            console.log(randomColor());
+            
+        })
+        Startstopcolor = setInterval(Changecolor, 2000)
+        
+    })
+
+    const StopChangingColor = (()=>{
+        clearInterval(Startstopcolor)
+        Startstopcolor = null;
+    })
+
+    let Start = document.querySelector('#Start')
+    Start.addEventListener('click', StartChangingColor)
+        
+
+    let Stop = document.querySelector('#Stop');
+    Stop.addEventListener('click', StopChangingColor)
+    
+</script>
+</html>

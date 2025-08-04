@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Async JS</title>
+    <title>Async Javascript</title>
 </head>
 <body>
-    <h1>Chai aur Code</h1>
-    <button id="stop">Stop</button>
+    <h1 style="text-align: center;">Synchronization in Javascript</h1>
+    <button>Stop</button>
 
+    
     <script>
-        //setInterval()  - It is asking a break point.
-        const Hacx = (() => {
-            console.log("Hacx");
+        const sayMYName = () =>{
+            console.log("Hacx Singh");
+        }
+
+        let h1 = (()=>{
+            const h1 = document.querySelector('h1');
+            h1.innerHTML = "Bajrang Bali";
         })
-        const ChangeText = (() => {
-            document.getElementsByTagName('h1').innerHTML = 'Hacx the Cybersecurity Engineer'
+
+        //let change =  setTimeout(h1, 2000);
+
+        document.querySelector('button').addEventListener('click',()=>{
+        clearTimeout(change)
+        console.log("Stopped");
+        
         })
-        setTimeout(ChangeText, 3000)
+
+        
+
+        console.log("Hello World"); // This will be executed first because it is not a callback function
     </script>
 </body>
 </html>

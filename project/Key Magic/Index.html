@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Magic</title>
+    <style>
+    table {
+        border-collapse: collapse;
+        border: 2px solid rgb(140 140 140);
+        font-family: sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">KEYBOARD MAGIC PRESS AND WATCH </h1>
+    <div id="Insert">
+        <div class="Key"></div>
+    </div>
+
+   
+</body>
+<script>
+     let Insert = document.querySelector('#Insert');
+
+     window.addEventListener('keydown', (event)=>{
+        Insert.innerHTML = `
+        <div class="color">
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Keycode</th>
+                <th>Code</th>
+            </tr>
+            <tr>
+                <td>${event.key === " " ?"Space" : event.key}</td>
+                <td>${event.keyCode}</td>
+                <td>${event.code }</td>
+            </tr>
+        </table>
+        </div>
+        `;
+     });
+</script>
+</html>
