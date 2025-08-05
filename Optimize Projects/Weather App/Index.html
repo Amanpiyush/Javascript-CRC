@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items: center;
+      gap: 2rem;
+    }
+    #Container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 1rem;
+      width: 400px;
+      height: 200px;
+      background-color: #113F67;
+      color: white;
+      font-weight: bold;
+    }
+    #City{
+      border-radius: 0.5rem;
+      width: 200px;
+      height: 40px;
+      text-align: center;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    button{
+      border-radius: 0.5rem;
+      border: none;
+      width: 100px;
+      height: 40px;
+      background-color:#58A0C8;
+      color: white;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight:bold;
+    }
+    button:hover{
+      background-color:#F08B51;
+    }
+  </style>
+
+</head>
+<body>
+  <h1 style="text-align: center;">WEATHER APPLICATION</h1>
+  <div id="Container">
+
+  </div
+  <form>
+    <input type="text" id="City" placeholder="Enter City Name">
+  </form>
+  <button id="Weather">
+    Get Weather
+  </button>
+</body>
+<script>
+  const wheatherContainer = document.querySelector('#Container');
+  const cityInput = document.querySelector('#City');
+  const Weather = async () =>{
+    try {
+    const APIKey ='3f147f22f875f68a7ab945a3bba27ee8'
+    const city = cityInput.value.trim(); //Get UserInput
+    if(!city){
+      wheatherContainer.innerHTML = "!Please Enter City Name"
+      return;
+    }
+
+    wheatherContainer.innerHTML = "Loading weather data...."
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+    const response = await fetch (url); 
+    const result = await response.json();
+
+    if(result === "404"){
+      wheatherContainer.innerHTML = `City Not found ${city}`
+      return;
+    }
+
+    //PNG and Weather Description
+    const weatherDesc = result.weather[0].description;
+    const iconCode = result.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    wheatherContainer.innerHTML = `🌍 City -  ${result.name} <br> 🌡️ Temperature - ${result.main.temp}°C <br> ☁️ Condition - ${weatherDesc} <br> <img src="${iconUrl}" alt="${weatherDesc}"`
+      } catch (error) {
+        console.log("Error : Something Went Wrong");
+    }
+  };
+
+  document.querySelector('#Weather').addEventListener('click',(event)=>{
+    event.preventDefault();
+    Weather();
+  })
+</script>
+</html>
