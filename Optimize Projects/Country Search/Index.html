@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Search</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items: center;
+      gap: 2rem;
+    }
+    #Container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 1rem;
+      width: 400px;
+      height: 500px;
+      background-color: #113F67;
+      color: white;
+      font-weight: bold;
+    }
+    #flag{
+      border-radius: 0.6rem;
+    }
+    #Country{
+      border-radius: 0.5rem;
+      width: 200px;
+      height: 40px;
+      text-align: center;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    button{
+      border-radius: 0.5rem;
+      border: none;
+      width: 100px;
+      height: 40px;
+      background-color:#58A0C8;
+      color: white;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight:bold;
+    }
+    button:hover{
+      background-color:#F08B51;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">COUNTRY SEARCH</h1>
+  <div id="Container"></div>
+  <input type="text" id="Country" placeholder="Search Country">
+  <button>Search</button>
+</body>
+<script>
+  const countryContainer = document.querySelector('#Container');
+  const countryInput = document.querySelector('#Country')
+  const fetchCountry = async () =>{
+    try {
+      const country = countryInput.value.trim();
+      if(!country){
+        countryContainer.innerHTML = "Enter the country Name ?"
+        return
+      }
+
+      countryContainer.innerHTML = "Please waiting Loading..."
+
+      const URL = `https://restcountries.com/v3.1/name/${country}`
+      const response = await fetch (URL);
+
+      if(!response.ok){
+        countryContainer.innerHTML = "Country not found. Please check the spelling."
+        return;
+      }
+      const result = await response.json();
+      const countryData = result[0];
+      console.log(result);
+      countryContainer.innerHTML = `
+      <h1>${countryData.name.common}</h1>
+      <img id="flag" src="${countryData.flags.png}" width="150" />
+      <p>Capital: ${countryData.capital[0]}</p>
+      <p>Population: ${countryData.population.toLocaleString()}</p>
+      `;
+    } catch (error) {
+      console.log("Error: Something went wrong");
+    }
+  }
+
+  document.querySelector('button').addEventListener('click',fetchCountry)
+</script>
+</html>
