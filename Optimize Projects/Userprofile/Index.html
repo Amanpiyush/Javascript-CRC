@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Fetcher</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items: center;
+      gap: 2rem;
+    }
+    #Container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 1rem;
+      width: 400px;
+      height: 500px;
+      background-color: #113F67;
+      color: white;
+      font-weight: bold;
+    }
+    #Github{
+      border-radius: 0.5rem;
+      width: 200px;
+      height: 40px;
+      text-align: center;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    #userprofile{
+      border-radius: 1rem;
+    }
+    button{
+      border-radius: 0.5rem;
+      border: none;
+      width: 100px;
+      height: 40px;
+      background-color:#58A0C8;
+      color: white;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight:bold;
+    }
+    button:hover{
+      background-color:#F08B51;
+    }
+  </style>
+
+</head>
+<body>
+  <h1 style="text-align: center;">GITHUB PROFILE FETCHER</h1>
+  <div id="Container">
+
+  </div
+  <div>
+    <input type="text" id="Github" placeholder="Enter The Name">
+  </div>
+  <button id="User">
+    Fetch user
+  </button>
+</body>
+<script>
+  const gitContainer = document.querySelector('#Container');
+  const gitInput = document.querySelector('#Github');
+
+  const fetchUser = async () =>{
+  try {
+    
+    const userName = gitInput.value.trim();
+
+    if(!userName){
+      gitContainer.innerHTML = 'Please Enter The UserName'
+      return
+    }
+
+    gitContainer.innerHTML = "Please Wait Loading..."
+
+    const URL = `https://api.github.com/users/${userName}`;
+    const response = await fetch (URL);
+    if(!response.ok){
+      gitContainer.innerHTML = `User not found ${userName}`
+      return
+    }
+    const result = await response.json();
+    console.log(result);
+    
+    gitContainer.innerHTML = `
+      <h2>${result.name}</h2>
+      <p>${result.bio}</p>
+      <img id="userprofile" src="${result.avatar_url}" width="150" />
+      <p>Public Repos: ${result.public_repos}</p>
+      <p>Followers: ${result.followers}</p>`;
+
+    }catch (error) {
+      console.log("Error : Something went wrong");
+    }
+  }
+  document.querySelector('#User').addEventListener('click', (event)=>{
+    event.preventDefault();
+    fetchUser();
+  })
+</script>
+</html>
