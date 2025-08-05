@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Joke Generator</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items: center;
+      gap: 2rem;
+    }
+    #Container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 1rem;
+      width: 400px;
+      height: 200px;
+      background-color: #DEE8CE;
+    }
+    button{
+      border-radius: 0.5rem;
+      border: none;
+      width: 100px;
+      height: 40px;
+      background-color:#BB6653;
+      color: white;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight:bold;
+    }
+    button:hover{
+      background-color:#F08B51;
+    }
+  </style>
+
+</head>
+<body>
+  <h1 style="text-align:center">RANDOM JOKE GENERATOR</h1>
+  <div id="Container">
+
+  </div>
+  <button id="Joke">Get JOKE</button>
+</body>
+<script>
+  const JokeContainer = document.querySelector('#Container');
+  const getJoke = async()=>{
+    const Data = await fetch ('https://official-joke-api.appspot.com/random_joke');
+    const Result = await Data.json();
+    JokeContainer.innerHTML = 'Loading Joke....';
+    JokeContainer.innerHTML = `Type -  ${Result.setup} <br> Punchline - ${Result.punchline}`;
+  }
+  document.querySelector('#Joke').addEventListener('click',getJoke);
+</script>
+</html>
+
+<!-- const getJoke = async () => {
+  try {
+    JokeContainer.innerHTML = "Loading joke...";
+    const Data = await fetch('https://official-joke-api.appspot.com/random_joke');
+    const Result = await Data.json();
+    JokeContainer.innerHTML = `Type - ${Result.setup} <br> Punchline - ${Result.punchline}`;
+  } catch (error) {
+    JokeContainer.innerHTML = "Failed to load joke. Try again.";
+    console.error("Error fetching joke:", error);
+  }
+}; -->
